@@ -1,0 +1,24 @@
+{
+  "name": "Shadow",
+  "short_name": "Shadow",
+  "description": "Capture thoughts, tasks, emotions and daily signals. Shadow turns them into living memory you can navigate.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#0a0a0c",
+  "categories": ["productivity", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/shady-final.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}

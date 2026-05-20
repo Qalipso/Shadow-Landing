@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "General Sans", "Geist", "Inter", system-ui, sans-serif;
+  --font-serif: "Spectral", "Times New Roman", Georgia, serif;
+  --font-body: "Geist", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: #0a0a0c;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed nav so anchor scroll lands below it */
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+body {
+  background: #0a0a0c;
+  color: #f2f2f5;
+  overflow-x: clip;
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(ellipse at bottom, rgba(92, 225, 255, 0.03) 0%, transparent 50%);
+}
+
+/* film grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+::selection {
+  background: rgba(124, 92, 255, 0.5);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Glass ─── */
+.glass {
+  background: rgba(18, 14, 30, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-blur {
+  background: rgba(18, 14, 30, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Liquid glass — gradient border mask ─── */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.10);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Italic gradient — Spectral italic ─── */
+.italic-grad {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  background-image: linear-gradient(
+    to left,
+    #6388ff,
+    #a07cff,
+    #ffb068
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.05em;
+}
+
+/* ─── Shady eye blink ─── */
+@keyframes shady-blink {
+  0%, 84%, 100% { transform: scaleY(1); }
+  88%, 93% { transform: scaleY(0.07); }
+}
+.animate-shady-blink {
+  animation: shady-blink 7s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* ─── Dot pulse ─── */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.5; }
+}
+.animate-dot-pulse {
+  animation: dot-pulse ease-in-out infinite;
+}
+
+/* ─── Node pulse ─── */
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(124, 92, 255, 0); }
+  50% { box-shadow: 0 0 20px rgba(124, 92, 255, 0.4); }
+}
+.animate-node-pulse {
+  animation: node-pulse ease-in-out infinite;
+}
+
+/* ─── Halo dual-layer ─── */
+@keyframes halo-breath {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.12); }
+}
+@keyframes halo-breath-outer {
+  0%, 100% { opacity: 0.35; transform: scale(1.05); }
+  50%      { opacity: 0.7;  transform: scale(0.92); }
+}
+.animate-halo {
+  animation: halo-breath 6s ease-in-out infinite;
+}
+.animate-halo-outer {
+  animation: halo-breath-outer 10s ease-in-out infinite;
+}
+
+/* ─── Hero orbital spark ─── */
+@keyframes spark-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes hero-dust {
+  0%, 100% { transform: translate(0, 0); opacity: 0.25; }
+  50%      { transform: translate(8px, -14px); opacity: 0.95; }
+}
+
+/* ─── Eye flicker ─── */
+@keyframes eye-flicker {
+  0%, 42%, 46%, 86%, 90%, 100% { filter: drop-shadow(0 0 12px rgba(124, 92, 255, 0.4)); }
+  44% { filter: drop-shadow(0 0 32px rgba(124, 92, 255, 0.9)) brightness(1.15); }
+  88% { filter: drop-shadow(0 0 24px rgba(124, 92, 255, 0.7)) brightness(1.08); }
+}
+.animate-eye-flicker {
+  animation: eye-flicker 7s ease-in-out infinite;
+}
+
+/* ─── Hero letter reveal ─── */
+@keyframes hero-letter-reveal {
+  from { opacity: 0; transform: translateY(0.4em) scale(0.96); filter: blur(12px); }
+  to   { opacity: 1; transform: translateY(0) scale(1);       filter: blur(0); }
+}
+.animate-hero-letter {
+  animation: hero-letter-reveal 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ─── Hero signals: drift + pull ─── */
+@keyframes hero-signal-drift {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%      { transform: translate(calc(-50% + 4px), calc(-50% - 6px)); }
+}
+@keyframes hero-signal-pull {
+  0%   { transform: translate(-50%, -50%); opacity: var(--start-o, 0.85); }
+  35%  { transform: translate(calc(-50% + var(--pull-x, 0px) * 0.4), calc(-50% + var(--pull-y, 0px) * 0.4)); opacity: var(--start-o, 0.85); }
+  78%  { transform: translate(calc(-50% + var(--pull-x, 0px) * 0.95), calc(-50% + var(--pull-y, 0px) * 0.95)); opacity: 0; }
+  100% { transform: translate(-50%, -50%); opacity: var(--start-o, 0.85); }
+}
+.animate-signal-drift { animation: hero-signal-drift 12s ease-in-out infinite; }
+.animate-signal-pull  { animation: hero-signal-pull   9s ease-in-out infinite; }
+
+/* ─── Hero memory lines flow ─── */
+@keyframes hero-line-flow {
+  to { stroke-dashoffset: -120; }
+}
+.animate-line-flow {
+  animation: hero-line-flow 6s linear infinite;
+}
+
+/* ─── Marquee ─── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 32s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* ─── Breathe (used by Shady) ─── */
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.95; }
+  50%      { transform: scale(1.03); opacity: 1; }
+}
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
