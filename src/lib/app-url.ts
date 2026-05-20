@@ -6,7 +6,7 @@
  *
  * The app side sanitizes `source` (whitelist) and `email` (regex) before use.
  */
-const APP_URL = import.meta.env.VITE_SHADOW_APP_URL ?? "#";
+const APP_URL = process.env.NEXT_PUBLIC_SHADOW_APP_URL ?? "#";
 
 export type AppUrlSource =
   | "landing"

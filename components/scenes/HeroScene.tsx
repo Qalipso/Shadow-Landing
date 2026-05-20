@@ -59,7 +59,7 @@ export function HeroScene() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex flex-col items-center overflow-hidden px-6 pt-24 pb-10">
+    <section id="hero" ref={sectionRef} className="relative min-h-screen flex flex-col items-center overflow-hidden px-6 pt-24 pb-10">
       {/* Ambient violet/cyan gradient — premium atmospheric bg */}
       <div
         className="absolute inset-0 pointer-events-none z-0"

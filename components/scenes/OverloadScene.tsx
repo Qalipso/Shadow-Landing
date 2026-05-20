@@ -23,6 +23,7 @@ export function OverloadScene() {
 
   return (
     <section
+      id="overload"
       ref={ref}
       className="relative min-h-[200vh] flex items-center justify-center px-6"
     >

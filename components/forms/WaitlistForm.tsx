@@ -37,8 +37,8 @@ function pushLocalFallback(payload: Record<string, unknown>) {
 }
 
 async function postSupabase(payload: Record<string, unknown>) {
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key) return null;
 
   const endpoint = `${url.replace(/\/+$/, "")}/rest/v1/waitlist`;
@@ -61,7 +61,7 @@ async function postSupabase(payload: Record<string, unknown>) {
 }
 
 async function postWebhook(payload: Record<string, unknown>) {
-  const endpoint = import.meta.env.VITE_WAITLIST_ENDPOINT;
+  const endpoint = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT;
   if (!endpoint) return null;
   // Fire-and-forget (e.g. n8n / Zapier / Resend / Loops). Failures are non-fatal.
   try {

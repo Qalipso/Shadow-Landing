@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* General Sans from Fontshare — not available on Google Fonts */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+
 :root {
   --font-display: "General Sans", "Geist", "Inter", system-ui, sans-serif;
   --font-serif: "Spectral", "Times New Roman", Georgia, serif;
@@ -28,7 +31,6 @@ section[id] {
 }
 
 /* ─── Seamless section transitions ─── */
-/* Bottom fade: section content bleeds into dark background */
 section[id]::after {
   content: "";
   position: absolute;
@@ -40,7 +42,6 @@ section[id]::after {
   pointer-events: none;
   z-index: 20;
 }
-/* Top fade: background bleeds into section from above — skip hero (first section) */
 section[id]:not(#hero)::before {
   content: "";
   position: absolute;
