@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Spectral,
-  Inter,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Geist, Geist_Mono, Spectral } from "next/font/google";
 import "./globals.css";
 
 // ── Fonts ──────────────────────────────────────────────────────────────────
@@ -29,17 +23,6 @@ const spectral = Spectral({
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
 
 // ── Metadata ───────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -55,21 +38,23 @@ export const metadata: Metadata = {
       "Capture thoughts, tasks, emotions and daily signals. Shadow turns them into living memory you can navigate.",
     images: [
       {
-        url: "/assets/shady-final.png",
-        alt: "Shadow — the AI mascot Shady, a purple-glowing orb.",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shadow — Stop holding your whole life in your head.",
       },
     ],
     locale: "en_US",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Shadow — Stop holding your whole life in your head.",
     description:
       "Capture thoughts, tasks, emotions and daily signals. Shadow turns them into living memory you can navigate.",
     images: [
       {
-        url: "/assets/shady-final.png",
-        alt: "Shadow — the AI mascot Shady, a purple-glowing orb.",
+        url: "/og-image.png",
+        alt: "Shadow — Stop holding your whole life in your head.",
       },
     ],
   },
@@ -111,14 +96,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${spectral.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${spectral.variable}`}
     >
       <head>
-        {/* General Sans from Fontshare (not on Google Fonts) */}
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap"
-          rel="stylesheet"
+        {/* General Sans — async load to avoid render-blocking */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap';document.head.appendChild(l)}()`,
+          }}
         />
         <script
           type="application/ld+json"

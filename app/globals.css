@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* General Sans from Fontshare — not available on Google Fonts */
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
 
 :root {
   --font-display: "General Sans", "Geist", "Inter", system-ui, sans-serif;
