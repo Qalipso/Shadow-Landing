@@ -101,6 +101,7 @@ export default function RootLayout({
       <head>
         {/* General Sans — async load to avoid render-blocking */}
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `!function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap';document.head.appendChild(l)}()`,
